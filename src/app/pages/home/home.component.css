@@ -1,0 +1,23 @@
+div{
+  width: 100%;
+  text-align: center;
+  & img{
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+  & span{
+    font-family: "Oooh Baby", cursive;
+    font-size: 2em;
+  }
+}
+
+@media screen and (min-width: 1500px){
+  div{
+    & img{
+      margin-bottom: 2rem;
+    }
+    & span{
+      font-size: 2.5em;
+    }
+  }
+}
