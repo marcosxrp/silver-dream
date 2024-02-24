@@ -1,20 +1,22 @@
 <header>
-  <a href="instagram.com"><img src="assets/logo.svg" alt="logo"></a>
+  <a routerLink="home"><img src="assets/logo.svg" alt="logo"></a>
   @if (!isMobile) {
     <ul>
-      <li>página inicial</li>
-      <li>catálogo</li>
-      <li>sobre nós</li>
+      <li><a routerLink="home">página inicial</a></li>
+      <li><a routerLink="catalogo">catálogo</a></li>
+      <li><a routerLink="about">sobre nós</a></li>
     </ul>
   }
   @else {
     <div class="menu-container">
-      <div class="toggler">páginas</div>
-      <div class="menu">
-        <div>página inicial</div>
-        <div>catálogo</div>
-        <div>sobre nós</div>
-      </div>
+      <div class="toggler" (click)="changeMenuVisibility()" appClickOutsideMenu (clickOutside)="changeMenuVisibility()">páginas <img src="assets/down_triangle.png" alt="down_triangle"></div>
+      @if (isMenuVisible) {
+        <div class="menu-container">
+          <div><a routerLink="home">página inicial</a></div>
+          <div>catálogo</div>
+          <div>sobre nós</div>
+        </div>
+      }
     </div>
   }
   <a href=""><img src="assets/Basket_alt_light.svg" alt="kart"></a>
