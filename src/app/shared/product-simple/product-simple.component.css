@@ -1,0 +1,25 @@
+.product-container{
+  width: 13rem;
+  height: 16rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  & img{
+    width: 100%;
+  }
+
+  & .info-kart{
+    display: flex;
+    justify-content: space-between;
+
+    & p{
+      font-size: 1.3em;
+    }
+
+    & img{
+      height: 50px;
+      width: auto;
+    }
+  }
+}

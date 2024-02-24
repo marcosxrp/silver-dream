@@ -1,5 +1,5 @@
-import { Component , OnInit, HostListener} from '@angular/core';
-import { Router, RouterLink, RouterModule } from '@angular/router';
+import { Component , OnInit, HostListener, ElementRef} from '@angular/core';
+import { RouterLink, RouterModule } from '@angular/router';
 import { ClickOutsideMenuDirective } from '../../directives/click-outside-menu.directive';
 
 @Component({
@@ -26,7 +26,8 @@ checkScreenSize() {
   this.isMobile = window.innerWidth < 768;
 }
 
-changeMenuVisibility() {
+changeMenuVisibility(triangle: HTMLImageElement) {
   this.isMenuVisible = !this.isMenuVisible;
+  triangle.style.transform = this.isMenuVisible ? 'rotate(180deg)' : 'rotate(0deg)';
 }
 }

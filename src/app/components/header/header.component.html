@@ -1,5 +1,6 @@
 <header>
   <a routerLink="home"><img src="assets/logo.svg" alt="logo"></a>
+
   @if (!isMobile) {
     <ul>
       <li><a routerLink="home">página inicial</a></li>
@@ -9,7 +10,7 @@
   }
   @else {
     <div class="menu-container">
-      <div class="toggler" (click)="changeMenuVisibility()" appClickOutsideMenu (clickOutside)="changeMenuVisibility()">páginas <img src="assets/down_triangle.png" alt="down_triangle"></div>
+      <div class="toggler" (click)="changeMenuVisibility(downTriangle)" [appClickOutsideMenu]="isMenuVisible" (clickOutside)="changeMenuVisibility(downTriangle)">páginas <img src="assets/down_triangle.png" alt="down_triangle" #downTriangle></div>
       @if (isMenuVisible) {
         <div class="menu-container">
           <div><a routerLink="home">página inicial</a></div>

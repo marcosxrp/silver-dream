@@ -23,7 +23,7 @@ header{
     height: 100%;
     width: 150px;
     text-align: center;
-
+    cursor: pointer;
 
     & .toggler{
       height: 100%;

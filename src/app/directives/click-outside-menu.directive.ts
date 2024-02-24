@@ -1,4 +1,4 @@
-import { Directive , ElementRef, Output, EventEmitter, HostListener} from '@angular/core';
+import { Directive , ElementRef, Output, EventEmitter, HostListener, Input} from '@angular/core';
 
 @Directive({
   selector: '[appClickOutsideMenu]',
@@ -6,15 +6,17 @@ import { Directive , ElementRef, Output, EventEmitter, HostListener} from '@angu
 })
 export class ClickOutsideMenuDirective {
   @Output() clickOutside = new EventEmitter<void>();
+  @Input() appClickOutsideMenu:boolean = false;
 
   constructor(private elRef: ElementRef) { }
 
   @HostListener('document:click', ['$event.target'])
   public onClick(targetElement: any): void {
-    const clickInside = this.elRef.nativeElement.contains(targetElement);
-    if(!clickInside) {
-      this.clickOutside.emit();
+    if (this.appClickOutsideMenu) {
+      const clickInside = this.elRef.nativeElement.contains(targetElement);
+      if(!clickInside) {
+        this.clickOutside.emit();
+      }
     }
   }
-
 }
