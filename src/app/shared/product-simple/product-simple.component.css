@@ -1,21 +1,22 @@
 .product-container{
   width: 13rem;
-  height: 16rem;
+  height: 18rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   & img{
     width: 100%;
+    aspect-ratio: 1/1;
+  }
+
+  & p{
+    font-size: 1.3em;
   }
 
   & .info-kart{
     display: flex;
     justify-content: space-between;
-
-    & p{
-      font-size: 1.3em;
-    }
 
     & img{
       height: 50px;

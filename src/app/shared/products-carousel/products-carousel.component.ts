@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component , Input} from '@angular/core';
 import { ProductSimpleComponent } from '../product-simple/product-simple.component';
+import { FirebaseData } from '../../models/firebase-data.model';
 
 @Component({
   selector: 'app-products-carousel',
@@ -9,5 +10,10 @@ import { ProductSimpleComponent } from '../product-simple/product-simple.compone
   styleUrl: './products-carousel.component.css'
 })
 export class ProductsCarouselComponent {
+  @Input() products: FirebaseData[] = []
+
+  ngOnChanges() {
+    console.log(this.products)
+  }
 
 }

@@ -1,9 +1,9 @@
 <div class="product-container">
-  <img src="https://firebasestorage.googleapis.com/v0/b/silver-dream.appspot.com/o/images%2Fproducts%2Fargolas.png?alt=media&token=6d28751f-fc50-4e5f-a172-18fe6f5ddde6" alt="">
+  @defer (on viewport) {<img [src]="product.imgPath" [alt]="product.name">} @placeholder {<img src="assets/default-img.webp">}
+  <p>{{product.name}}</p>
   <div class="info-kart">
     <div class="info">
-      <p>argola de prata</p>
-      <p>R$65,00 à vista</p>
+      <p>R${{ (product.value * 0.9 | roundDown).toFixed(2) }} à vista</p>
     </div>
     <img src="assets/Basket_alt_light_small.svg" alt="kart">
   </div>
