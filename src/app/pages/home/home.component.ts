@@ -1,7 +1,7 @@
 import { Component, inject, OnInit} from '@angular/core';
-import { HomeProductsSectionComponent } from '../../components/home-products-section/home-products-section.component';
-import { FirebaseDataService } from '../../services/firebase-data.service';
-import { FirebaseData } from '../../models/firebase-data.model';
+import { HomeProductsSectionComponent } from './home-products-section/home-products-section.component';
+import { FirebaseDataService } from '../../core/services/firebase-data.service';
+import { FirebaseData } from '../../core/models/firebase-data.model';
 import { filter , map} from 'rxjs';
 
 @Component({
