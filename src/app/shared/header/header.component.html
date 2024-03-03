@@ -3,9 +3,9 @@
 
   @if (!isMobile) {
     <ul>
-      <li><a routerLink="home">página inicial</a></li>
-      <li><a routerLink="catalogo">catálogo</a></li>
-      <li><a routerLink="about">sobre nós</a></li>
+      <li><a routerLink="/home">página inicial</a></li>
+      <li><a routerLink="/catalog">catálogo</a></li>
+      <li><a routerLink="/about">sobre nós</a></li>
     </ul>
   }
   @else {
@@ -13,12 +13,12 @@
       <div class="toggler" (click)="changeMenuVisibility(downTriangle)" [appClickOutsideMenu]="isMenuVisible" (clickOutside)="changeMenuVisibility(downTriangle)">páginas <img src="assets/down_triangle.png" alt="down_triangle" #downTriangle></div>
       @if (isMenuVisible) {
         <div class="menu-container">
-          <div><a routerLink="home">página inicial</a></div>
-          <div>catálogo</div>
-          <div>sobre nós</div>
+          <div><a routerLink="/home">página inicial</a></div>
+          <div><a routerLink="/catalog">catálogo</a></div>
+          <div routerLink="/about">sobre nós</div>
         </div>
       }
     </div>
   }
-  <a href=""><img src="assets/Basket_alt_light.svg" alt="kart"></a>
+  <a routerLink="/cart"><img src="assets/Basket_alt_light.svg" alt="cart"></a>
 </header>

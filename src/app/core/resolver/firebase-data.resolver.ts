@@ -4,5 +4,6 @@ import { FirebaseDataService } from '../services/firebase-data.service';
 import { FirebaseData } from '../models/firebase-data.model';
 
 export const firebaseDataResolver: ResolveFn<FirebaseData[]> = (route, state) => {
+  console.log('Resolved');
   return inject(FirebaseDataService).fetchProducts();
 };
