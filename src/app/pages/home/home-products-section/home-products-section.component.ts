@@ -1,4 +1,4 @@
-import { Component , Input, OnChanges} from '@angular/core';
+import { Component , Input} from '@angular/core';
 import { ProductsCarouselComponent } from '../products-carousel/products-carousel.component';
 import { ButtonComponent } from '../../../shared/components/buttom/button.component';
 import { FirebaseData } from '../../../core/models/firebase-data.model';

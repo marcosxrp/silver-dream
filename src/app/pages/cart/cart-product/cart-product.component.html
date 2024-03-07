@@ -1,0 +1,19 @@
+<div class="product">
+  <img [src]="product.imgPath" [alt]="product.name"/>
+  <div class="info">
+    <div class="text">
+      <h4>{{ product.name }}</h4>
+      <p>R$ {{(product.value * 0.9).toFixed(2) }} à vista</p>
+      <p>R$ {{ (product.value).toFixed(2) }} no cartão</p>
+    </div>
+    <div class="quantity">
+      <button (click)="removeOne()" class="button"><img src="assets/Remove_light.svg" alt="minus button"></button>
+
+      <p>{{ product.cartQuantity }}</p>
+
+      @if (!isButtomDisabled()) {
+        <button class="button" (click)="addMore()" [disabled]="isButtomDisabled()"><img src="assets/Add_ring_light.svg" alt="plus button"></button>
+      }
+    </div>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+.cart-container{
+  padding-top: 3rem;
+  width: 90%;
+  margin: 0 auto;
+
+  & h2{
+    font-weight: 800;
+    font-size: 2.5em;
+    margin-bottom: 2rem;
+  }
+
+  & .cart-products{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  & .finish-buy {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 6rem;
+
+    & .value {
+      font-weight: 700;
+      font-size: 1.2em;
+      display: flex;
+      flex-direction: column;
+      align-items: end;
+
+      & span {
+        font-weight: 800;
+        font-size: 1.1em;
+      }
+    }
+  }
+}

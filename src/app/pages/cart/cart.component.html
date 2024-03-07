@@ -1,1 +1,18 @@
-<p>cart works!</p>
+@if (this.cartProducts.length > 0) {
+  <div class="cart-container">
+    <h2>Carrinho de compras</h2>
+    <div class="cart-products">
+      @for (product of cartProducts; track $index) {
+        <app-cart-product [product]="product" (addMoreClicked)="addMoreToCart(product)" (removeOneClicked)="removeOneFromCart(product)"/>
+      }
+    </div>
+    <div class="finish-buy">
+      <div class="value">
+        <p><span>Total</span>: R$ {{ totalValue }} no cartão</p>
+        <p>R$ {{ totalValue * 0.9 }} à vista</p>
+      </div>
+      <app-button pageRoute="finish" buttonText="Finalizar compra"/>
+    </div>
+  </div>
+}
+

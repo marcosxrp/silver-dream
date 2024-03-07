@@ -3,6 +3,7 @@
   display: flex;
   overflow-x: auto;
   gap: 6rem;
+  overflow-y: hidden;
 }
 
 .products::-webkit-scrollbar{

@@ -11,7 +11,7 @@ export class FirebaseDataService {
   private productsSubject: BehaviorSubject<FirebaseData[]> = new BehaviorSubject<FirebaseData[]>([]);
   private dataFetched: boolean = false;
 
-  http = inject(HttpClient)
+  private http = inject(HttpClient)
 
   fetchProducts(): Observable<FirebaseData[]>{
     if(this.dataFetched === false){
@@ -20,7 +20,7 @@ export class FirebaseDataService {
         tap((dataArray: FirebaseData[]) => {
           this.productsSubject.next(dataArray);
           this.dataFetched = true;
-          console.log('oiii')
+          console.log('passed by service fetch')
         })
       );
     } else {
