@@ -8,8 +8,8 @@
     </div>
     <div class="finish-buy">
       <div class="value">
-        <p><span>Total</span>: R$ {{ totalValue }} no cartão</p>
-        <p>R$ {{ totalValue * 0.9 }} à vista</p>
+        <p><span>Total</span>: R$ {{ (totalValue).toFixed(2) }} no cartão</p>
+        <p>R$ {{ (totalValue * 0.9).toFixed(2) }} à vista</p>
       </div>
       <app-button pageRoute="finish" buttonText="Finalizar compra"/>
     </div>
