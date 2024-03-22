@@ -5,6 +5,11 @@
   flex-direction: column;
   justify-content: space-between;
 
+  @media screen and (max-width: 800px) {
+    width: 11rem;
+    height: 16rem;
+  }
+
   & img{
     width: 100%;
     aspect-ratio: 1/1;
@@ -12,6 +17,10 @@
 
   & p{
     font-size: 1.3em;
+
+    @media screen and (max-width: 800px) {
+      font-size: 1.1em;
+    }
   }
 
   & .info-kart{

@@ -1,6 +1,6 @@
-import { Injectable , OnInit} from '@angular/core';
+import { Injectable} from '@angular/core';
 import { CartProduct } from '../models/cart-products.model';
-import { BehaviorSubject , Observable} from 'rxjs';
+import { BehaviorSubject , Observable, map} from 'rxjs';
 import { FirebaseData } from '../models/firebase-data.model';
 
 @Injectable({
@@ -9,14 +9,17 @@ import { FirebaseData } from '../models/firebase-data.model';
 export class CartServiceService{
   private productsSubject: BehaviorSubject<CartProduct[]> = new BehaviorSubject<CartProduct[]>([]);
 
-  private products: CartProduct[] = [];
-
-  constructor() {
-    this.productsSubject.next(this.products)
-  }
+  constructor() { this.getLocalStorage();}
 
   get products$(): Observable<CartProduct[]> {
     return this.productsSubject.asObservable();
+  }
+
+  get totalCartQuantity$(): Observable<number> {
+    return this.products$.pipe(
+      map((cartProducts: CartProduct[]) =>
+        cartProducts.reduce((total: number, product: CartProduct) => total + product.cartQuantity, 0))
+    );
   }
 
   addProductToCart(product: FirebaseData) {
@@ -26,6 +29,7 @@ export class CartServiceService{
 
     if(index !== -1) {
       const cartQuantity: number = actualProducts[index].cartQuantity;
+
       if(cartQuantity + 1 <= actualProducts[index].stock) {
         actualProducts[index].cartQuantity++;
         this.updateProducts([...actualProducts]);
@@ -38,10 +42,11 @@ export class CartServiceService{
 
   addOneToCart(product: CartProduct) {
     const actualProducts: CartProduct[] = [...this.productsSubject.value];
-    const index: number = actualProducts.findIndex(p => p.id === product.id)
+    const index: number = actualProducts.findIndex(p => p.id === product.id);
 
     if(index !== -1) {
       const cartQuantity: number = actualProducts[index].cartQuantity;
+
       if(cartQuantity + 1 <= actualProducts[index].stock) {
         actualProducts[index].cartQuantity++;
         this.updateProducts([...actualProducts]);
@@ -51,7 +56,7 @@ export class CartServiceService{
 
   RemoveOneFromCart(product: CartProduct) {
     const actualProducts: CartProduct[] = [...this.productsSubject.value];
-    const index: number = actualProducts.findIndex(p => p.id === product.id)
+    const index: number = actualProducts.findIndex(p => p.id === product.id);
 
     if(index !== -1) {
       if(actualProducts[index].cartQuantity === 1){
@@ -64,7 +69,21 @@ export class CartServiceService{
     }
   }
 
+  getLocalStorage () {
+    const productsInLocalStorage = localStorage.getItem('cartProducts');
+    if (productsInLocalStorage) {
+      const products: CartProduct[] = JSON.parse(productsInLocalStorage);
+      this.productsSubject.next(products);
+    }
+  }
+
+  attLocalStorage(products: CartProduct[]) {
+    const storedProducts = JSON.stringify(products);
+    localStorage.setItem('cartProducts', storedProducts);
+  }
+
   updateProducts(UpdatedProducts: CartProduct[]) {
-    this.productsSubject.next(UpdatedProducts)
+    this.productsSubject.next(UpdatedProducts);
+    this.attLocalStorage(UpdatedProducts);
   }
 }
