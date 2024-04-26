@@ -1,0 +1,35 @@
+div{
+  width: 95%;
+  margin: 0 auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+
+  & h2{
+    font-size: 2.5rem;
+    font-weight: 800;
+  }
+
+  & p{
+    font-size: 1.2em;
+    font-weight: 500;
+  }
+
+  & .buttonDiv{
+    display: flex;
+    align-items: center;
+
+    & button{
+      cursor: pointer;
+      width: 200px;
+      font-size: 1.2em;
+      font-weight: 700;
+      background-color: #CFCFCF;
+      padding: 1em;
+      margin: 0 auto;
+      border-radius: 10px;
+      border: none;
+
+    }
+  }
+
+}

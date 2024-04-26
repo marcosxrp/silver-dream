@@ -1,5 +1,6 @@
-<div class="products">
+<!--Display of the products in the carrousel using for-->
 
+<div class="products">
   @for (product of products; track $index) {
     <app-product-simple [product]="product"/>
   }

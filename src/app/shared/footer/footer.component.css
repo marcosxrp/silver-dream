@@ -4,7 +4,7 @@ footer{
   text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: .3rem;
   padding: 1rem 0;
 
   & span{
@@ -20,7 +20,7 @@ footer{
       gap: 10vw;
 
       & li img{
-        width: 70%;
+        width: 55%;
       }
     }
   }

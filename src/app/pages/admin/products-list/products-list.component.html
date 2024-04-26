@@ -1,0 +1,23 @@
+<!--Display all the products using for-->
+
+<div>
+  @for (product of products; track $index) {
+    <div class="product">
+      <!--Lazy load using an image as placeholder-->
+      @defer (on viewport) {<img [src]="product.imgPath" [alt]="product.name">} @placeholder {<img src="assets/default-img.webp">}
+
+      <h4>{{product.name}}</h4>
+
+      <div class="info">
+        <span>Id: {{product.id}}</span>
+        <span>Valor: {{product.value}}</span>
+        <span>Estoque: {{product.stock}}</span>
+        @if (product.newProduct) { <span>Novidade</span> }
+        @if (product.onSale) { <span>Em promoção</span> }
+      </div>
+
+      <button type="button" (click)="editProduct(product)">Editar</button>
+      
+    </div>
+  }
+</div>

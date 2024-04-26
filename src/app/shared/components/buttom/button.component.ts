@@ -1,4 +1,4 @@
-import { Component , Input, Inject} from '@angular/core';
+import { Component , Input, inject} from '@angular/core';
 import { Router} from '@angular/router';
 
 @Component({
@@ -9,14 +9,19 @@ import { Router} from '@angular/router';
   styleUrl: './button.component.css'
 })
 export class ButtonComponent {
+  // Injections
+  private router = inject(Router);
+
+  // Variables
   readonly defaultText: string = 'Ver catálogo completo';
   readonly defaultRoute: string = 'catalog';
 
+  // Inputs
   @Input() buttonText: string = this.defaultText;
   @Input() pageRoute: string = this.defaultRoute;
+  @Input() isDisabled: boolean = false;
 
-  constructor(private router: Router) {}
-
+  // button to navigate only if the pageRoute is not 'finish'
   goToPage() {
     if (this.pageRoute === 'finish') {
     } else {

@@ -1,10 +1,14 @@
+<!--The model of the product that gonna be displayed-->
+
 <div class="product-container">
+  <!--Defer with a placeholder-->
   @defer (on viewport) {<img [src]="product.imgPath" [alt]="product.name">} @placeholder {<img src="assets/default-img.webp">}
   <p>{{product.name}}</p>
   <div class="info-kart">
     <div class="info">
       <p>R${{ (product.value * 0.9 | roundDown).toFixed(2) }} à vista</p>
     </div>
+    <!--Button to send to the cart-->
     <img src="assets/Basket_alt_light_small.svg" alt="cart" (click)="addToCart(product)" [@scaleAnimation]="animationState">
   </div>
 </div>

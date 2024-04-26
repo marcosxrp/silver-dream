@@ -1,5 +1,7 @@
+// Responsible by send the actions to the cart component and by the animations
+
 import { Component , EventEmitter, Input, Output} from '@angular/core';
-import { CartProduct } from '../../../core/models/cart-products.model';
+import { CartProduct } from '../../../core/models/cart-product.model';
 import { trigger, style, state, transition, animate } from '@angular/animations';
 
 @Component({
@@ -8,6 +10,7 @@ import { trigger, style, state, transition, animate } from '@angular/animations'
   imports: [],
   templateUrl: './cart-product.component.html',
   styleUrl: './cart-product.component.css',
+  // Animation
   animations: [
     trigger('scaleAnimation', [
       state('normal', style({
@@ -21,10 +24,13 @@ import { trigger, style, state, transition, animate } from '@angular/animations'
   ]
 })
 export class CartProductComponent {
+  // Input and Outputs
   @Input() product!: CartProduct;
+  // trigger the actions to the cart component
   @Output() addMoreClicked: EventEmitter<void> = new EventEmitter<void>()
   @Output() removeOneClicked: EventEmitter<void> = new EventEmitter<void>()
 
+  // Variables
   protected addMoreAnimationState: string = 'normal';
   protected removeOneAnimationState: string = 'normal';
 

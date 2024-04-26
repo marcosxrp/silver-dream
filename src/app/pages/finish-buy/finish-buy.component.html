@@ -1,0 +1,100 @@
+<!--Here i tested other way of managing page changes(Only for learnig)-->
+
+<div class="container">
+  <form [formGroup]="myForm">
+    @switch (this.page) {
+      @case (1) {
+        <div formGroupName="personalInfo">
+          <h2>Informações pessoais</h2>
+
+          <label for="name">*Nome:</label>
+          <input type="text" id="name" formControlName="name">
+
+          <label for="birthDate">*Data de nacimento:</label>
+          <input type="date" id="birthDate" formControlName="birthDate">
+
+          <label for="phoneNumber">*Celular:</label>
+          <input type="tel" id="phoneNumber" formControlName="phoneNumber" appPhoneFormatter>
+
+          <label for="email">*Email</label>
+          <input type="email" id="email" formControlName="email">
+        </div>
+      }
+      @case (2) {
+        <div formGroupName="address">
+          <h2>Endereço de entrega</h2>
+
+          <label for="cep">*CEP</label>
+          <input type="text" id="cep" formControlName="cep">
+
+          <label for="state">*Estado</label>
+          <select id="state" formControlName="state">
+            <option value="">Selecione um estado</option>
+            @for (state of this.brazilStates; track $index) {
+              <option [value]="state">{{ state }}</option>
+            }
+          </select>
+
+          <label for="city">*Cidade</label>
+          <input type="text" id="city" formControlName="city">
+
+          <label for="street">*Endereço</label>
+          <input type="text" id="street" formControlName="street">
+
+          <label for="number">*Número</label>
+          <input type="text" id="number" formControlName="number">
+
+          <label for="complement">Complemento</label>
+          <input type="text" id="complement" formControlName="complement">
+        </div>
+      }
+      @case (3) {
+        <div formGroupName="payment">
+          <h2>Método de pagamento</h2>
+          <div class="payment">
+            <label class="paymentMethod" (click)="resetForm()">
+              <input type="radio" id="pix" formControlName="paymentMethod" value="pix">
+              <img src="assets/pix-logo.png" alt="pix logo">
+            </label>
+            <label class="paymentMethod" (click)="resetForm()">
+              <input type="radio" id="card" formControlName="paymentMethod" value="card">
+              <img src="assets/card-icon.png" alt="card icon" class="card-icon">
+            </label>
+          </div>
+          @if (myForm.controls['payment'].value['paymentMethod'] === "pix") {
+            <img src="assets/pix-confirmation.png" class="pix-code" alt="pix qr code" width="150px">
+            <span>Leia em um leitor qrCode, não use leitor de banco</span>
+            <label for="pixCode">*Digite o codigo de confirmação do pix</label>
+            <input type="text" id="pixCode" autocomplete="off" formControlName="confirmationCode">
+          } @else if (myForm.controls['payment'].value['paymentMethod'] === "card") {
+            <label for="name">*Nome:</label>
+            <input type="text" formControlName="name" id="name">
+
+            <label for="cardNumber">*Numero do cartão:</label>
+            <input type="text" id="cardNumber" formControlName="cardNumber" maxlength="6" placeholder="Only 6 numbers for test" autocomplete="off">
+
+            <label for="cvc">*CVC:</label>
+            <input type="text" id="cvc" formControlName="cvc" maxlength="2" placeholder="Only 2 numbers for test" autocomplete="off">
+
+            <label for="installment">*Parcelas:</label>
+            <select id="installment" formControlName="installment">
+              <option value="">Escolha o numero de parcelas</option>
+              @for (number of installmenOptions; track $index) {
+                <option [value]="number">{{number}} @if(number===1){parcela}@else{parcelas} de: {{(totalValue/number).toFixed(2) }} sem juros</option >
+              }
+            </select>
+          }
+        </div>
+      }
+    }
+
+  </form>
+  <div class="buttons">
+    <button type="button" (click)="returnPage()" [disabled]="!(this.page > 1)">Voltar</button>
+    @if (page !== 3) {
+      <button type="button" (click)="nextPage()" [disabled]="!isFormValid()">Próximo</button>
+    } @else {
+      <button type="button" (click)="finish()" [disabled]="checkFinishButton()">Finalizar</button>
+    }
+  </div>
+</div>

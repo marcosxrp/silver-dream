@@ -1,8 +1,15 @@
+<!--Show the products in the cart and the value-->
+
 <div class="cart-container">
   <h2>Carrinho de compras</h2>
   <div class="cart-products">
+    <!--Show the products and give the nescessary information and receive the actions-->
     @for (product of cartProducts; track $index) {
-      <app-cart-product [product]="product" (addMoreClicked)="addMoreToCart(product)" (removeOneClicked)="removeOneFromCart(product)"/>
+      <app-cart-product
+        [product]="product"
+        (addMoreClicked)="addMoreToCart(product)"
+        (removeOneClicked)="removeOneFromCart(product)"
+      />
     }
   </div>
   <div class="finish-buy">
@@ -10,7 +17,12 @@
       <p><span>Total</span>: R$ {{ (totalValue).toFixed(2) }} no cartão</p>
       <p>R$ {{ (totalValue * 0.9).toFixed(2) }} à vista</p>
     </div>
-    <app-button pageRoute="finish" buttonText="Finalizar compra"/>
+    <app-button
+      pageRoute="finish"
+      buttonText="Continuar"
+      [isDisabled]="!(this.cartProducts.length > 0)"
+      (click)="finishBuy()"
+    />
   </div>
 </div>
 

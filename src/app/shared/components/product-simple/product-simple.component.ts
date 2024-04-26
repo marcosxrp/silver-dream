@@ -1,7 +1,9 @@
+// Responsible by the input of the product data, and by the function to send the prouct to the cart
+
 import { Component , Input, inject} from '@angular/core';
-import { FirebaseData } from '../../../core/models/firebase-data.model';
+import { Product } from '../../../core/models/product.model';
 import { RoundDownPipe } from '../../pipes/round-down.pipe';
-import { CartServiceService } from '../../../core/services/cart-service.service';
+import { CartService } from '../../../core/services/cart.service';
 import { trigger, style, state, transition, animate } from '@angular/animations';
 
 @Component({
@@ -10,6 +12,7 @@ import { trigger, style, state, transition, animate } from '@angular/animations'
   imports: [RoundDownPipe],
   templateUrl: './product-simple.component.html',
   styleUrl: './product-simple.component.css',
+  // Animation of the cart button
   animations: [
     trigger('scaleAnimation', [
       state('normal', style({
@@ -23,16 +26,21 @@ import { trigger, style, state, transition, animate } from '@angular/animations'
   ]
 })
 export class ProductSimpleComponent {
-  private cartService = inject(CartServiceService);
+  // Injections
+  private cartService = inject(CartService);
 
-  @Input() product!: FirebaseData;
+  // Variables
   protected animationState: string = 'normal';
 
-  addToCart(product: FirebaseData) {
+  // Inputs
+  @Input() product!: Product;
+
+  addToCart(product: Product) {
     this.cartService.addProductToCart(product)
     this.toggleAnimationState();
   }
 
+  // Toggle the animation and go back
   toggleAnimationState() {
     this.animationState = 'scaled'
     setTimeout(() => this.animationState = 'normal', 100)

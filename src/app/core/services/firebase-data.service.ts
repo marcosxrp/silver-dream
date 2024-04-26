@@ -1,34 +1,52 @@
+// responsible by the fetch of the products
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject} from '@angular/core';
 import { BehaviorSubject, Observable , tap, map} from 'rxjs';
-import { FirebaseData } from '../models/firebase-data.model';
+import { Product } from '../models/product.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseDataService {
-  private databaseUrl: string = `https://silver-dream-default-rtdb.firebaseio.com/products.json`;
-  private productsSubject: BehaviorSubject<FirebaseData[]> = new BehaviorSubject<FirebaseData[]>([]);
-  private dataFetched: boolean = false;
-
+  // Injections
   private http = inject(HttpClient)
 
-  fetchProducts(): Observable<FirebaseData[]>{
+  // variables
+  public databaseUrl: string = `https://silver-dream-default-rtdb.firebaseio.com/products`;
+  private productsSubject: BehaviorSubject<Product[]> = new BehaviorSubject<Product[]>([]);
+  private dataFetched: boolean = false;
+  public lastId!: number;
+
+
+  fetchProducts(): Observable<Product[]>{
+    // verify if the data was fetched or not
     if(this.dataFetched === false){
-      return this.http.get<FirebaseData[]>(this.databaseUrl).pipe(
-        map(data => Object.values(data)),
-        tap((dataArray: FirebaseData[]) => {
-          this.productsSubject.next(dataArray);
+      return this.http.get<Product[]>(this.databaseUrl + '.json').pipe(
+        map(data => {
+          // transform the object in an array
+          const dataArray = Object.values(data);
+          return dataArray;
+        }),
+        tap((dataArray: Product[]) => {
+          const filteredProducts = dataArray.filter(product => product !== null);
+          this.productsSubject.next(filteredProducts);
           this.dataFetched = true;
-          console.log('passed by service fetch')
+          this.lastId = filteredProducts.length + 1;
+          console.log(filteredProducts)
         })
       );
     } else {
+      //Was needed to return the Observable because of the type of fetchProducts()
       return this.productsSubject.asObservable();
     }
   }
 
-  get products$(): Observable<FirebaseData[]> {
+  attfetchStatus(){
+    this.dataFetched = false;
+  }
+
+  get products$(): Observable<Product[]> {
     return this.productsSubject.asObservable();
   }
 }

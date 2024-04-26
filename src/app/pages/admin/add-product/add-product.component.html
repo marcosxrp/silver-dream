@@ -1,0 +1,44 @@
+<!--Form of the add product component and error handlings-->
+
+<div class="form">
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+
+    <!--Name-->
+    <label for="name">Nome do produto: </label>
+    <input type="text" formControlName="name" id="name" autocomplete="off">
+    <!--Error handling-->
+    @if (myForm.get('name')?.getError('required') && myForm.get('name')?.touched) { <p class="errorMessage">O campo esta vazio</p> }
+    @if (myForm.get('name')?.getError('minlength') && myForm.get('name')?.touched) { <p class="errorMessage">Número de letras insuficiente</p> }
+
+    <!--ImgPath-->
+    <label for="imgPath">Link da imagem: </label>
+    <input type="text" formControlName="imgPath" id="imgPath" autocomplete="off">
+    <!--Error handling-->
+    @if (myForm.get('imgPath')?.getError('required') && myForm.get('imgPath')?.touched) { <p class="errorMessage">O campo esta vazio</p> }
+    @if (myForm.get('imgPath')?.getError('minlength') && myForm.get('imgPath')?.touched) { <p class="errorMessage">Número de letras insuficiente</p> }
+
+    <!--Stock-->
+    <label for="stock">Estoque diponivel: </label>
+    <input type="text" formControlName="stock" id="stock" autocomplete="off">
+    <!--Error handling-->
+    @if (myForm.get('stock')?.getError('required') && myForm.get('stock')?.touched) { <p class="errorMessage">O campo esta vazio</p> }
+    @if (myForm.get('stock')?.getError('notANumber') ) { <p class="errorMessage">Digite apenas números</p> }
+    @if (myForm.get('stock')?.getError('min')) { <p class="errorMessage">Digite um valor maior que 0</p> }
+
+    <!--Value-->
+    <label for="value">Valor: </label>
+    <input type="text" formControlName="value" id="value" autocomplete="off">
+    <!--Error handling-->
+    @if (myForm.get('value')?.getError('required') && myForm.get('value')?.touched) { <p class="errorMessage">O campo esta vazio</p> }
+    @if (myForm.get('value')?.getError('notANumber') ) { <p class="errorMessage">Digite apenas números</p> }
+    @if (myForm.get('value')?.getError('min')) { <p class="errorMessage">Digite um valor maior que 0</p> }
+
+    <!--OnSale-->
+    <div class="checkbox">
+      <label for="onSale">Está em promoção? </label>
+      <input type="checkbox" formControlName="onSale" id="onSale">
+    </div>
+
+    <button type="submit" [disabled]="!myForm.valid">Adicionar produto</button>
+  </form>
+</div>

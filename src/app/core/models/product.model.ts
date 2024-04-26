@@ -1,4 +1,6 @@
-export interface FirebaseData {
+// Model to the product
+
+export interface Product {
   id: number;
   imgPath: string;
   name: string;

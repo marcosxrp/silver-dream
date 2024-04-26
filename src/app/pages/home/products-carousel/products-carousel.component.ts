@@ -1,6 +1,8 @@
+// Input of the products
+
 import { Component , Input} from '@angular/core';
 import { ProductSimpleComponent } from '../../../shared/components/product-simple/product-simple.component';
-import { FirebaseData } from '../../../core/models/firebase-data.model';
+import { Product } from '../../../core/models/product.model';
 
 @Component({
   selector: 'app-products-carousel',
@@ -10,5 +12,5 @@ import { FirebaseData } from '../../../core/models/firebase-data.model';
   styleUrl: './products-carousel.component.css'
 })
 export class ProductsCarouselComponent {
-  @Input() products: FirebaseData[] = []
+  @Input() products: Product[] = []
 }

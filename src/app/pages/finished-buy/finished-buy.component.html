@@ -1,0 +1,25 @@
+<div>
+  <h2>Compra finalizada</h2>
+
+  <p>Valor total: {{ totalValue }}</p>
+  <p>Nome: {{ formData.value['personalInfo']['name'] }}</p>
+  <p>Data de nascimento: {{ formData.value['personalInfo']['birthDate'] }}</p>
+  <p>Celular: {{ formData.value['personalInfo']['phoneNumber'] }}</p>
+  <p>Email: {{ formData.value['personalInfo']['email'] }}</p>
+  <p>CEP: {{ formData.value['address']['cep'] }}</p>
+  <p>Estado: {{ formData.value['address']['state'] }}</p>
+  <p>Cidade: {{ formData.value['address']['city'] }}</p>
+  <p>Rua: {{ formData.value['address']['street'] }}</p>
+  <p>Numero: {{ formData.value['address']['number'] }}</p>
+  @if (formData.value['address']['complement'] !== '') {<p>Complemento: {{ formData.value['address']['complement'] }}</p>}
+  @if (formData.value['payment']['paymentMethod'] !== '') { <p>Metodo de pagamento: {{ formData.value['payment']['paymentMethod'] }}</p> }
+  @if (formData.value['payment']['confirmationCode'] !== '') {<p>Codigo de confirmação{{formData.value['payment']['confirmationCode']}}</p>}
+  @if (formData.value['payment']['name'] !== '') { <p>Nome no cartão: {{ formData.value['payment']['name'] }}</p> }
+  @if (formData.value['payment']['cardNumber'] !== '') { <p>Numero do cartão: {{ formData.value['payment']['cardNumber'] }}</p> }
+  @if (formData.value['payment']['cvc'] !== '') { <p>CVC: {{ formData.value['payment']['cvc'] }}</p> }
+  @if (formData.value['payment']['installment'] !== '') { <p>Parcelas: {{ formData.value['payment']['installment'] }}</p> }
+
+  <div class="buttonDiv"><button (click)="goToHomePage()">Voltar para o inicio</button></div>
+</div>
+
+

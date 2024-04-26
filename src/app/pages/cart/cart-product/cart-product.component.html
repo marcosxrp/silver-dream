@@ -1,3 +1,5 @@
+<!--The product in the cart-->
+
 <div class="product">
   <img [src]="product.imgPath" [alt]="product.name"/>
   <div class="info">
@@ -13,6 +15,7 @@
 
       <p>{{ product.cartQuantity }}</p>
 
+      <!--See if the product have stock-->
       @if (!isButtonDisabled()) {
         <button class="button" (click)="addMore()" [disabled]="isButtonDisabled()" [@scaleAnimation]="addMoreAnimationState">
           <img src="assets/Add_ring_light.svg" alt="plus button">

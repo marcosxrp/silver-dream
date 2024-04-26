@@ -1,0 +1,40 @@
+div{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 1rem;
+
+  & .product{
+    height: 360px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: .3em;
+
+    & img{
+      width: 150px;
+      aspect-ratio: 1/1;
+    }
+
+    & .info{
+      display: flex;
+      flex-direction: column;
+      gap: .3rem;
+
+      & h4{
+        text-align: center;
+      }
+    }
+
+    & button{
+      font-weight: 700;
+      border: none;
+      width: 100%;
+      padding: .5rem 0;
+      background-color: #cfcfcf;
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+  }
+}

@@ -1,1 +1,9 @@
-<p>catalog works!</p>
+<div>
+  <h2>Catálogo</h2>
+
+  <div class="products">
+    @for (product of products; track $index) {
+      <app-product-simple [product]="product"/>
+    }
+  </div>
+</div>

@@ -1,7 +1,9 @@
+// Responsible by the input of the section tittle aind the products
+
 import { Component , Input} from '@angular/core';
 import { ProductsCarouselComponent } from '../products-carousel/products-carousel.component';
 import { ButtonComponent } from '../../../shared/components/buttom/button.component';
-import { FirebaseData } from '../../../core/models/firebase-data.model';
+import {Product } from '../../../core/models/product.model';
 
 @Component({
   selector: 'app-home-products-section',
@@ -11,6 +13,7 @@ import { FirebaseData } from '../../../core/models/firebase-data.model';
   styleUrl: './home-products-section.component.css'
 })
 export class HomeProductsSectionComponent{
+  //Inputs
   @Input() sectionTittle:string = '';
-  @Input() products: FirebaseData[] = [];
+  @Input() products:Product[] = [];
 }

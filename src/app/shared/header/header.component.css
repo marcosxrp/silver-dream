@@ -15,7 +15,7 @@ header{
 
   & ul{
     display: flex;
-    gap: 15vw;
+    gap: 4vw;
     font-size: 1.3em;
   }
 

@@ -1,3 +1,5 @@
+// pipe to round down the products values to clean the template
+
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({

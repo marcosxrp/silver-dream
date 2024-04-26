@@ -1,0 +1,53 @@
+<!--The form of the edit product and the errors handlings-->
+
+<div class="form">
+  <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+
+    <!--Name-->
+    <label for="name">Nome do produto: </label>
+    <input type="text" formControlName="name" id="name" autocomplete="off">
+    <!--Error handling-->
+    @if (editForm.get('name')?.getError('required') && editForm.get('name')?.touched) { <p class="errorMessage">O campo esta vazio</p> }
+    @if (editForm.get('name')?.getError('minlength') && editForm.get('name')?.touched) { <p class="errorMessage">Número de letras insuficiente</p> }
+
+    <!--ImgPath-->
+    <label for="imgPath">Link da imagem: </label>
+    <input type="text" formControlName="imgPath" id="imgPath" autocomplete="off">
+    <!--Error handling-->
+    @if (editForm.get('imgPath')?.getError('required') && editForm.get('imgPath')?.touched) { <p class="errorMessage">O campo esta vazio</p> }
+    @if (editForm.get('imgPath')?.getError('minlength') && editForm.get('imgPath')?.touched) { <p class="errorMessage">Número de letras insuficiente</p> }
+
+    <!--Stock-->
+    <label for="stock">Estoque diponivel: </label>
+    <input type="text" formControlName="stock" id="stock" autocomplete="off">
+    <!--Error handling-->
+    @if (editForm.get('stock')?.getError('required') && editForm.get('stock')?.touched) { <p class="errorMessage">O campo esta vazio</p> }
+    @if (editForm.get('stock')?.getError('notANumber') ) { <p class="errorMessage">Digite apenas números</p> }
+    @if (editForm.get('stock')?.getError('min')) { <p class="errorMessage">Digite um valor maior que 0</p> }
+
+    <!--Value-->
+    <label for="value">Valor: </label>
+    <input type="text" formControlName="value" id="value" autocomplete="off">
+    <!--Error handling-->
+    @if (editForm.get('value')?.getError('required') && editForm.get('value')?.touched) { <p class="errorMessage">O campo esta vazio</p> }
+    @if (editForm.get('value')?.getError('notANumber') ) { <p class="errorMessage">Digite apenas números</p> }
+    @if (editForm.get('value')?.getError('min')) { <p class="errorMessage">Digite um valor maior que 0</p> }
+
+    <!--OnSale-->
+    <div class="checkbox">
+      <label for="onSale">Está em promoção? </label>
+      <input type="checkbox" formControlName="onSale" id="onSale">
+    </div>
+
+    <!--NewProduct-->
+    <div class="checkbox">
+      <label for="newProduct">É um novo produto? </label>
+      <input type="checkbox" formControlName="newProduct" id="newProduct">
+    </div>
+
+    <div class="buttons">
+      <button type="submit" [disabled]="!editForm.valid || !editForm.dirty">Editar produto</button>
+      <button type="button" (click)="deleteProduct()">Excluir produto</button>
+    </div>
+  </form>
+</div>
